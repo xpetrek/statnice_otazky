@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    #subject-list {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    #items {
+        display: flex;
+        flex-direction: row;
+    }
+</style>
+
+<script>
+    var subjects = [{
+        name: "Kvalita ve vývoji softwaru. ",
+        questions: [
+            "Kvalita ve vývoji softwaru. ",
+            "Měření softwaru a softwarové metriky. ",
+            "Principy Clean Code,",
+            "Principy SOLID. ",
+            "Testování kódu: jednotkové testy, integrační testy, uživatelské a akceptační testy. ",
+            "Ladění a testování výkonu. ",
+            "Vývojové metody založené na testování. ",
+            "Proces řízení kvality ve vývoji softwaru. "
+        ]
+    }, {
+        name: "Principy šifrovacích algoritmů",
+        questions: [
+            "Principy symetrických blokových šifrovacích algoritmů (Feistelovy šifry, DES, AES).",
+            "Principy symetrických blokových šifrovacích algoritmů asymetrických algoritmů (RSA, Diffie-Hellman, DSA / ElGamal). ",
+            "Faktorizace a testování prvočíselnosti. ",
+            "Principy konstrukce hašovacích funkcí. ",
+            "Kryptosystémy založené na eliptických křivkách."
+        ]
+    }, {
+        name: "Aplikace algoritmů šifer.",
+        questions: [
+            "Aplikace algoritmů symetrických šifer. ",
+            "Aplikace symetrických blokových šifrovacích algoritmů - integrita a důvěrnost, módy operací. ",
+            "Aplikace dalších symetrických algoritmů. ",
+            "Aplikace hašovacích funkcí, MAC. ",
+            "Hybridní kryptosystémy. "
+        ]
+    }, {
+        name: "Počítačové sítě. ",
+        questions: [
+            "Síťové modely a jejich vrstvy, jejich funkčnost, interakce, standardizace.",
+            "Protokoly na síťových vrstvách, funkce IPv4, pokročilé funkce IPv6, adresní prostor. ",
+            "Směrování: směrovače a jejich architektura, směrovací algoritmy, rodiny směrovacích algoritmů, směrování vícesměrového vysílání, MPLS, TE. ",
+            "Transportní protokoly: UDP, vlastnosti TCP a jeho varianty, transportní protokoly pro vysokorychlostní sítě."
+        ]
+    }, {
+        name: "Popisná statistika  ",
+        questions: [
+            "Popisná statistika (charakteristiky polohy a variability, pořádkové statistiky, statistiky asociace, související grafy). ",
+            "Diskrétní a spojité náhodné veličiny (NV). Náhodný výběr. ",
+            "Parametrické pravděpodobnostní modely (distribuce) NV. ",
+            "Centrální limitní věta. ",
+            "Princip věrohodnosti, bodové a intervalové odhady. ",
+            "Statistická inference - testování hypotéz, hladina významnosti, koeficient spolehlivosti. ",
+            "Testování hypotéz na jednom vzorku, dvou vzorcích, více než dvou vzorcích (včetně jednovýběrových, dvouvýběrových a párových t-testů, ANOVA a post-hoc testů), testů dobré shody. ",
+            "Lineární regresní model. "
+        ]
+    }, {
+        name: "Grafy a grafové algoritmy",
+        questions: [
+            "Formalizace základních grafových pojmů, grafové znázornění. ",
+            "Spojité a nespojité grafy, izomorfismus, obarvení, planární grafy. ",
+            "Algoritmy (včetně složitosti) prohledávání do hloubky.",
+            "Algoritmy (včetně složitosti) prohledavani do šířky.",
+            "Algoritmy (včetně složitosti) problém nejkratších cest.",
+            "Algoritmy (včetně složitosti) minimální kostra.",
+            "Algoritmy (včetně složitosti) toky v grafech. "
+        ]
+    }, {
+        name: "Distribuované systémy. ",
+        questions: [
+            "Synchronní a asynchronní systémy, problém ustanovení shody, selhání a byzantské poruchy, protokoly pro ustavení shody. ",
+            "Paralelní a distribuované počítače, základní principy, superskalární a streamingové (GPU) procesory, propojovací sítě a jejich struktura. ",
+            "Paměť, koherence mezipamětí. ",
+            "Základní principy efektivního programování v paralelních a distribuovaných prostředích, dekompozice úloh."
+        ]
+    }, {
+        name: "Bezpečnost, autentizace a autorizace. ",
+        questions: [
+            "Ověřování uživatelů v počítačových a síťových (distribuovaných) systémech. ",
+            "Protokol IPsec a jeho funkce. ",
+            "Problém distribuce klíčů a jeho řešení. ",
+            "PKI a CA, silné a slabé stránky. ",
+            "Zabezpečení bezdrátových sítí, základní protokoly WEP, WPA, 802.1x. ",
+            "Obecná bezpečnost na internetu. ",
+            "Autorizace, zásady, vztah mezi autentizací a autorizací. ",
+            "Bezpečnostní politiky, bezpečnostní kontrola. "
+        ]
+    }, {
+        name: "Multimédia a kolaborativní prostředí. ",
+        questions: [
+            "Multimediální technologie. ",
+            "Vstupní / výstupní multimediální zařízení, analogový / digitální převod a jeho principy. ",
+            "Prostředí pro spolupráci, audio / video interakce mezi lidmi, sdílení obsahu. ",
+            "Audio a video distribuce, multicast, bezpečnostní problémy multimediálních přenosů. ",
+            "Videokonference, principy a nástroje. "
+        ]
+    }]
+
+
+    function randomQ(evt) {
+        index = evt.target.getAttribute("subject_index")
+        questions = subjects[index]["questions"]
+        alert(questions[Math.floor(Math.random() * questions.length)])
+    }
+
+    function randomAll(evt) {
+        subject_index = Math.floor(Math.random() * subjects.length)
+        question_index = Math.floor(Math.random() * subjects[subject_index]["questions"].length)
+        questions = subjects[subject_index]["questions"][question_index];
+        alert(questions)
+    }
+
+
+    function showO(evt) {
+        index = evt.target.getAttribute("subject_index")
+        questions = subjects[index]["questions"].join("\n\n")
+        alert(questions)
+    }
+</script>
+
+
+
+<body>
+
+    <section id="subject-list"></section>
+
+    <script>
+        SJ = document.getElementById("subject-list");
+        subjects.forEach((subject, i) => {
+
+            let row = document.createElement("div");
+            row.classList.add("items")
+
+            let btnT = document.createElement("button");
+            btnT.innerText = subject['name']
+            btnT.style.width = "90%";
+            btnT.setAttribute("subject", subject['name'])
+            btnT.setAttribute("subject_index", i)
+
+            btnT.addEventListener('click', randomQ)
+
+
+            let btnO = document.createElement("button");
+            btnO.innerText = "otazky"
+            btnO.setAttribute("subject_index", i)
+            btnO.addEventListener('click', showO)
+
+            row.appendChild(btnT);
+            row.appendChild(btnO);
+
+            SJ.appendChild(row);
+
+
+        })
+
+        let btnV = document.createElement("button");
+        btnV.innerText = "nahodna ze vseho"
+        btnV.style.width = "90%";
+        btnV.style.backgroundColor = "#00ff00";
+
+        btnV.addEventListener('click', randomAll)
+        SJ.appendChild(btnV);
+    </script>
+
+</body>
+
+</html>
